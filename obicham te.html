@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Za choveka s naj sladkata usmivkata ❤️</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <style>
+      body {
+        margin: 0;
+        overflow: hidden;
+        font-family: "Inter", sans-serif;
+        height: 100vh;
+        touch-action: manipulation;
+        background: linear-gradient(135deg, #3d0101, #660d0d);
+      }
+
+      #app {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+      }
+
+      #content {
+        position: relative;
+        z-index: 10;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        box-sizing: border-box;
+      }
+
+      .step {
+        position: absolute;
+        width: 100%;
+        max-width: 800px;
+        padding: 40px;
+        background: #ab7b89;
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        pointer-events: none;
+      }
+
+      .step.active {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: all;
+      }
+
+      .btn {
+        background: linear-gradient(135deg, #ec4899, #f43f5e);
+        /* background: #AB7B89; */
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 50px;
+        font-weight: 600;
+        cursor: pointer;
+        box-shadow: 0 4px 15px rgba(236, 72, 153, 0.3);
+        transition: all 0.3s ease;
+      }
+
+      .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(236, 72, 153, 0.4);
+      }
+
+      .btn:active {
+        transform: translateY(0);
+      }
+
+      .reason-card {
+        background: white;
+        border-radius: 15px;
+        padding: 20px;
+        margin: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+      }
+
+      .reason-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+      }
+
+      #progress-container {
+        position: fixed;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80%;
+        max-width: 400px;
+        height: 6px;
+        background: rgba(255, 255, 255, 0.3);
+        border-radius: 3px;
+        z-index: 100;
+      }
+
+      #progress-bar {
+        height: 100%;
+        width: 0%;
+        background: linear-gradient(90deg, #ec4899, #f43f5e);
+        border-radius: 3px;
+        transition: width 0.5s ease;
+      }
+
+      #canvas-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="app">
+      <div id="canvas-container"></div>
+
+      <div id="progress-container">
+        <div id="progress-bar"></div>
+      </div>
+
+      <div id="content">
+        <div class="step active" id="step1">
+          <h1 class="text-4xl md:text-5xl font-bold mb-3 mt-2">Ehoooo</h1>
+          <p class="text-xl text-gray-700 mb-6">
+            Setih se che sum kinda programist i napravih neshtichko
+          </p>
+          <button class="btn" id="start-btn">Aight next</button>
+        </div>
+
+        <div class="step" id="step2">
+          <div class="emoji">👀</div>
+          <h2 class="text-3xl md:text-4xl font-bold mb-6">Epichniqt uvod</h2>
+          <p class="text-lg text-gray-700 mb-6">
+            Vqrvam che i bez men znaesh kolko si gotina, specialna, no
+            vse pak mi pozvoli nqkolko mili dumi.
+          </p>
+          <button class="btn" id="next-btn-2">DALI VEEE?</button>
+        </div>
+
+        <div class="step" id="step3">
+          <h2 class="text-3xl md:text-4xl font-bold mb-8">
+            Nqkolkoto mili dumi
+          </h2>
+          <p class="text-lg text-gray-700">
+            Usmivkata ti izpulva surceto mi s tolkova radost i toplina. Puk
+            smehut ti moje bi go haresvam poveche ot vsqka pesen, koqto nqkoga
+            sum chuval.
+          </p>
+          <p class="text-lg text-gray-700 mb-6">
+            Radvam se che mi se padna vuzmozhnostta da ti chestitq oshte tazi
+            godina.
+          </p>
+          <button class="btn" id="next-btn-3">Taka i?</button>
+        </div>
+
+        <div class="step" id="step4">
+          <img
+            class="rounded-xl m-auto mb-6"
+            src="553324426_1459780088641395_6834535745439462608_n.jpg"
+            height="200"
+            width="200"
+            alt="Funny ovechka 😛"
+            srcset=""
+          />
+
+          <p class="text-lg text-gray-700 mb-6">
+            Za malkoto vreme koeto se poznavame ti mi podari nerealno
+            kolichestvo nezabravimi i radostni spomeni i emocii. Nqma dumi s
+            koito da opisha kolko shtastliv chovek me napravi. 🥹
+          </p>
+          <button class="btn" id="next-btn-4">I za posledno</button>
+        </div>
+
+        <div class="step" id="step5">
+          <div class="emoji">🎂</div>
+          <h2 class="text-3xl md:text-4xl font-bold mb-6 mt-2">
+            Moeto pojelanie za teb
+          </h2>
+          <p class="text-lg text-gray-700 mb-8">
+            Dano uspeesh da postignesh vsqka cel, koqto si postavish, bez
+            znachenie kolko absurdna moje da izglezhda. Dano silite nikoga ne te izostavqt i dano
+            nikoga da ne zabravqsh kolko si specialna i kolko mnogo te obicham.
+          </p>
+          <p class="text-xl font-semibold text-red-900 mb-8">
+            Chestit rozhden den, <span class="text-pink-600">POLQQQ</span>! ❤️‍🔥
+          </p>
+          <button class="btn" id="confetti-btn">Davaaj natisni me</button>
+          <p class="mt-8 text-gray-500">Made with love just for you</p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Step Navigation
+      let currentStep = 1;
+      const totalSteps = 5;
+
+      function updateProgressBar() {
+        const progress = ((currentStep - 1) / (totalSteps - 1)) * 100;
+        document.getElementById("progress-bar").style.width = `${progress}%`;
+      }
+
+      function showStep(stepNumber) {
+        // Hide all steps
+        document.querySelectorAll(".step").forEach((step) => {
+          step.classList.remove("active");
+        });
+
+        // Show current step
+        document.getElementById(`step${stepNumber}`).classList.add("active");
+
+        // Update progress bar
+        updateProgressBar();
+      }
+
+      // Button event listeners
+      document.getElementById("start-btn").addEventListener("click", () => {
+        currentStep = 2;
+        showStep(currentStep);
+      });
+
+      document.getElementById("next-btn-2").addEventListener("click", () => {
+        currentStep = 3;
+        showStep(currentStep);
+      });
+
+      document.getElementById("next-btn-3").addEventListener("click", () => {
+        currentStep = 4;
+        showStep(currentStep);
+      });
+
+      document.getElementById("next-btn-4").addEventListener("click", () => {
+        currentStep = 5;
+        showStep(currentStep);
+      });
+
+      // Confetti button
+      document.getElementById("confetti-btn").addEventListener("click", () => {
+        document.getElementById("confetti-btn").innerHTML = "Yuppiee!";
+
+        // Standard confetti
+        confetti({
+          particleCount: 150,
+          spread: 70,
+          origin: { y: 0.6 },
+          colors: ["#ff0000", "#ff69b4", "#ff1493", "#ffc0cb"],
+        });
+
+        // Heart-shaped confetti
+        setTimeout(() => {
+          confetti({
+            particleCount: 30,
+            spread: 60,
+            origin: { y: 0.5 },
+            shapes: ["heart"],
+            colors: ["#ff0000", "#ff69b4"],
+          });
+        }, 300);
+
+        // More hearts from different directions
+        setTimeout(() => {
+          confetti({
+            particleCount: 20,
+            angle: 60,
+            spread: 55,
+            origin: { x: 0 },
+            shapes: ["heart"],
+            colors: ["#ff0000", "#ff69b4"],
+          });
+
+          confetti({
+            particleCount: 20,
+            angle: 120,
+            spread: 55,
+            origin: { x: 1 },
+            shapes: ["heart"],
+            colors: ["#ff0000", "#ff69b4"],
+          });
+        }, 600);
+      });
+
+      // Initialize progress bar
+      updateProgressBar();
+    </script>
+  </body>
+</html>
